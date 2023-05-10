@@ -5,29 +5,31 @@ import { HiDownload } from "react-icons/hi";
 import { FiMenu } from "react-icons/fi";
 import Cs from "../../public/cs";
 import { useRouter } from "next/router";
+import { useRecoilValue } from "recoil";
+import { openState } from "../../states/states";
 
-const Navbar = ({ render }) => {
+const Navbar = () => {
+  const render = useRecoilValue(openState);
   const router = useRouter();
-  console.log(router.pathname);
   return (
-    <NavbarContainer render={true}>
-      <NavbarItem active={router.pathname === "/"}>
+    <NavbarContainer render={render ? 1 : 0}>
+      <NavbarItem active={router.pathname === "/" ? 1 : 0}>
         <BiHomeAlt2 size={24} />
         <span>Home</span>
       </NavbarItem>
-      <NavbarItem active={router.pathname === "/search"}>
+      <NavbarItem active={router.pathname === "/search" ? 1 : 0}>
         <BiSearch size={24} />
         <span>Search</span>
       </NavbarItem>
-      <NavbarItem active={router.pathname === "/scheduled"}>
+      <NavbarItem active={router.pathname === "/scheduled" ? 1 : 0}>
         <Cs color={"gray"} />
         <span>Coming Soon</span>
       </NavbarItem>
-      <NavbarItem active={router.pathname === "/download"}>
+      <NavbarItem active={router.pathname === "/download" ? 1 : 0}>
         <HiDownload size={24} />
         <span>Downloads</span>
       </NavbarItem>
-      <NavbarItem active={router.pathname === "/more"}>
+      <NavbarItem active={router.pathname === "/more" ? 1 : 0}>
         <FiMenu size={24} />
         <span>More</span>
       </NavbarItem>
