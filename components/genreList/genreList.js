@@ -43,6 +43,14 @@ const GenreList = ({ type, name }) => {
             height={type === 1 ? 100 : 175}
           />
         </GenreListContentItem>
+        <GenreListContentItem type={type}>
+          <Image
+            src="/dall-e-1.png"
+            alt="img"
+            width={100}
+            height={type === 1 ? 100 : 175}
+          />
+        </GenreListContentItem>
       </GenreListContent>
     </GenreListContainer>
   );
