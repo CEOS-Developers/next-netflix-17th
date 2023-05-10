@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
+import GenreList from "../../components/genreList/genreList";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function Home() {
       </Head>
       <main className={`${inter.className}`}>
         <>testtest123</>
+        <GenreList />
       </main>
     </>
   );
