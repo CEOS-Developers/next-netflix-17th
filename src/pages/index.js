@@ -5,6 +5,9 @@ import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { openState } from "../../states/states";
 import LottieFile from "../../components/lottieFile/lottieFile";
+import Header from "../../components/header/header";
+import MainContent from "../../components/mainContent/mainContent";
+import ControlPanel from "../../components/controlPanel/controlPanel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,6 +37,9 @@ export default function Home() {
       </Head>
       <main className={`${inter.className}`}>
         {!opened ? <LottieFile /> : <></>}
+        <Header />
+        <MainContent />
+        <ControlPanel />
         <GenreList
           type={1}
           name="Previews"
