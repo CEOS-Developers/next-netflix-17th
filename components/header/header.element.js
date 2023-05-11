@@ -23,6 +23,6 @@ export const Icon = styled.img`
   }
 `;
 export const Tab = styled.div`
-  color: ${theme.white};
+  color: white;
   cursor: pointer;
 `;
