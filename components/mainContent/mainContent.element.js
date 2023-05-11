@@ -7,7 +7,6 @@ export const Wrapper = styled.div`
   position: relative;
   width: 391px;
   height: 415px;
-  background-color: rgb(90, 90, 90);
 
   .poster {
     object-fit: cover;

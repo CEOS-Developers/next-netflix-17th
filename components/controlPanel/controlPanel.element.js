@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { flexCenter } from "../../src/styles/theme";
+import { flexCenter, theme } from "../../src/styles/theme";
 
 export const TopRank = styled.div`
   ${flexCenter}
@@ -8,7 +8,7 @@ export const TopRankBox = styled.div`
   ${flexCenter}
   flex-direction: column;
 
-  border: 2px solid white;
+  border: 2px solid ${theme.white};
   width: 20px;
   height: 20px;
   color: white;
@@ -22,7 +22,7 @@ export const TopRankBox = styled.div`
 
 export const PlayButton = styled.button`
   ${flexCenter}
-  background: #c4c4c4;
+  background: ${theme.gray};
   border-radius: 5.6px;
   width: 110px;
   height: 45px;

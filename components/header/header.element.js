@@ -1,6 +1,5 @@
 import styled from "styled-components";
-
-import { flexCenter } from "../../src/styles/theme";
+import { flexCenter, theme } from "../../src/styles/theme";
 
 export const HeaderWrapper = styled.header`
   ${flexCenter}
@@ -18,13 +17,12 @@ export const Icon = styled.img`
   width: 2.1rem;
   dislay: inline-block;
   cursor: pointer;
-
   transition: transform 0.5s ease-in-out;
   &:hover {
     transform: rotateY(180deg);
   }
 `;
 export const Tab = styled.div`
-  color: white;
+  color: ${theme.white};
   cursor: pointer;
 `;

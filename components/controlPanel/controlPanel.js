@@ -13,12 +13,6 @@ const ControlPanel = () => {
   return (
     <Wrapper>
       <TopRank>
-        {/* TODO: 글씨 크기 너무 작아서 적용 안됨 > 이미지로 수정
-				<TopRankBox>
-					<span>TOP</span>
-					<span>10</span>
-				</TopRankBox>
-				*/}
         <TopRankText>#2 in Nigeria Today</TopRankText>
       </TopRank>
       <Panel>
