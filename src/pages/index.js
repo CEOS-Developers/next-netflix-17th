@@ -1,9 +1,93 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
+import GenreList from "../../components/genreList/genreList";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { openState } from "../../states/states";
+import LottieFile from "../../components/lottieFile/lottieFile";
+import Header from "../../components/header/header";
+import MainContent from "../../components/mainContent/mainContent";
+import ControlPanel from "../../components/controlPanel/controlPanel";
+import {
+  getUpcoming,
+  getNowPlaying,
+  getTopRated,
+  getPopular,
+} from "./api/movieApi";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [opened, setOpened] = useRecoilState(openState);
+  const [previewList, setPreviewList] = useState([]);
+  const [nowPlayingList, setNowPlayingList] = useState([]);
+  const [topRatedList, setTopRatedList] = useState([]);
+  const [popularList, setPopularList] = useState([]);
+
+  useEffect(() => {
+    getMovieData();
+    setTimeout(() => {
+      setOpened(true);
+    }, 4000);
+  }, []);
+
+  const getMovieData = () => {
+    getUpcoming()
+      .then((res) => {
+        res.data.results.map((item) => {
+          setPreviewList((prev) => [
+            ...prev,
+            {
+              id: item.id,
+              poster_path: item.poster_path,
+              // title: item.title,
+              // backdrop_path: item.backdrop_path,
+            },
+          ]);
+        });
+      })
+      .catch((err) => console.log(err));
+    getNowPlaying().then((res) => {
+      res.data.results.map((item) => {
+        setNowPlayingList((prev) => [
+          ...prev,
+          {
+            id: item.id,
+            poster_path: item.poster_path,
+            // title: item.title,
+            // backdrop_path: item.backdrop_path,
+          },
+        ]);
+      });
+    });
+    getTopRated().then((res) => {
+      res.data.results.map((item) => {
+        setTopRatedList((prev) => [
+          ...prev,
+          {
+            id: item.id,
+            poster_path: item.poster_path,
+            // title: item.title,
+            // backdrop_path: item.backdrop_path,
+          },
+        ]);
+      });
+    });
+    getPopular().then((res) => {
+      res.data.results.map((item) => {
+        setPopularList((prev) => [
+          ...prev,
+          {
+            id: item.id,
+            poster_path: item.poster_path,
+            // title: item.title,
+            // backdrop_path: item.backdrop_path,
+          },
+        ]);
+      });
+    });
+  };
+
   return (
     <>
       <Head>
@@ -22,7 +106,30 @@ export default function Home() {
         />
       </Head>
       <main className={`${inter.className}`}>
-        <>testtest123</>
+        {!opened ? <LottieFile /> : <></>}
+        <Header />
+        <MainContent />
+        <ControlPanel />
+        <GenreList
+          type={1}
+          name="Previews"
+          data={previewList}
+        />
+        <GenreList
+          type={2}
+          name="Now Playing"
+          data={nowPlayingList}
+        />
+        <GenreList
+          type={2}
+          name="Top Rated"
+          data={topRatedList}
+        />
+        <GenreList
+          type={2}
+          name="Popular"
+          data={popularList}
+        />
       </main>
     </>
   );

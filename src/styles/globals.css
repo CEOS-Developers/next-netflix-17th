@@ -10,6 +10,13 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  /* Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
 }
 
 html,
@@ -32,5 +39,9 @@ a {
 div.mainContainer {
   width: max(46.18vh, 24.438rem);
   height: 100vh;
-  background-color: yellowgreen;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding-bottom: 60px;
 }
