@@ -16,18 +16,23 @@ const ControlPanel = () => {
         <TopRankText>#2 in Nigeria Today</TopRankText>
       </TopRank>
       <Panel>
-        <IconWithText>
-          <AiOutlinePlus size={24} />
-          <span>My List</span>
-        </IconWithText>
-
-        <PlayButton>
-          <BsFillPlayFill size={27} /> <span>Play</span>
-        </PlayButton>
-        <IconWithText>
-          <AiOutlineInfoCircle size={24} />
-          <span>Info</span>
-        </IconWithText>
+        <span>
+          <IconWithText>
+            <AiOutlinePlus size={24} />
+            <span>My List</span>
+          </IconWithText>
+        </span>
+        <span>
+          <PlayButton>
+            <BsFillPlayFill size={27} /> <span>Play</span>
+          </PlayButton>
+        </span>
+        <span>
+          <IconWithText>
+            <AiOutlineInfoCircle size={24} />
+            <span>Info</span>
+          </IconWithText>
+        </span>
       </Panel>
     </Wrapper>
   );
