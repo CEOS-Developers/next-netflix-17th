@@ -11,11 +11,20 @@ const nextConfig = {
   images: {
     domains: ["image.tmdb.org"],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/api/movie/:path",
+        destination: `https://api.themoviedb.org/3/movie/:path?api_key=${process.env.NEXT_PUBLIC_MOVIE_API}`,
+      },
+    ];
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],
     });
+
     return config;
   },
 };
