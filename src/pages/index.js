@@ -1,13 +1,17 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import GenreList from "../../components/genreList/genreList";
-import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { openState } from "../../states/states";
-import LottieFile from "../../components/lottieFile/lottieFile";
+import { useInView } from "react-intersection-observer";
+
 import Header from "../../components/header/header";
+import GenreList from "../../components/genreList/genreList";
+import LottieFile from "../../components/lottieFile/lottieFile";
 import MainContent from "../../components/mainContent/mainContent";
 import ControlPanel from "../../components/controlPanel/controlPanel";
+
+import { openState } from "../../states/states";
+
 import {
   getUpcoming,
   getNowPlaying,
@@ -18,6 +22,7 @@ import {
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [ref, inView] = useInView();
   const [opened, setOpened] = useRecoilState(openState);
   const [previewList, setPreviewList] = useState([]);
   const [nowPlayingList, setNowPlayingList] = useState([]);
@@ -30,6 +35,10 @@ export default function Home() {
       setOpened(true);
     }, 4000);
   }, []);
+
+  useEffect(() => {
+    console.log(inView);
+  }, [inView]);
 
   const getMovieData = () => {
     getUpcoming()
@@ -107,7 +116,8 @@ export default function Home() {
       </Head>
       <main className={`${inter.className}`}>
         {!opened ? <LottieFile /> : <></>}
-        <Header />
+        <div ref={ref} />
+        <Header render={inView ? 1 : 0} />
         <MainContent />
         <ControlPanel />
         <GenreList

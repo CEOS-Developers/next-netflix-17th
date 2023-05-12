@@ -12,6 +12,8 @@ export const HeaderWrapper = styled.header`
   -webkit-box-align: center;
   -webkit-box-pack: justify;
   justify-content: space-between;
+  transition: opacity 0.5s ease-in-out;
+  opacity: ${(props) => (props.render ? 1 : 0)};
 `;
 export const Icon = styled.img`
   width: 2.1rem;
