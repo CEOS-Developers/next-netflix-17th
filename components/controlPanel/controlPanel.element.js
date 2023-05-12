@@ -45,8 +45,13 @@ export const IconWithText = styled.div`
 `;
 
 export const Panel = styled.div`
+  width: 100%;
   display: flex;
-  gap: 42px;
+  flex-direction: row;
+  justify-content: space-between;
+  & > span {
+    flex-basis: 33.3%;
+  }
 `;
 export const TopRankText = styled.div`
   color: white;
@@ -61,5 +66,5 @@ export const Wrapper = styled.div`
   flex-direction: column;
   gap: 11px;
   padding: 10px 43px 43px 43px;
-  width: 391px;
+  width: max(46.18vh, 24.438rem);
 `;

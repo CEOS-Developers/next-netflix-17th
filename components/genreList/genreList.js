@@ -23,6 +23,10 @@ const GenreList = ({ type, name, data }) => {
                 alt="img"
                 width={100}
                 height={type === 1 ? 100 : 175}
+                loading="eager"
+                placeholder="blur"
+                blurDataURL="https://via.placeholder.com/100"
+                style={{ objectFit: "cover" }}
               />
             </GenreListContentItem>
           ))}
