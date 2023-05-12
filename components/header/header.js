@@ -1,21 +1,22 @@
 import { HeaderWrapper, Icon, Tab } from "./header.element";
-import {
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-  useLayoutEffect,
-} from "react";
+import { useInview } from "react-intersection-observer";
+import { useState, useEffect, useCallback } from "react";
 
-const Header = () => {
-  const layoutRef = useRef(null);
-  function handleScroll() {
-    console.log("scrolled!");
-  }
+const Header = ({ render }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  const onScroll = useCallback((event) => {
+    const { pageYOffset, scrollY } = window;
+    console.log("yOffset", pageYOffset, "scrollY", scrollY);
+  }, []);
 
   useEffect(() => {
-    document.body.addEventListener("scroll", handleScroll);
-    return () => document.body.removeEventListener("scroll", handleScroll);
+    //add eventlistener to window
+    window.addEventListener("scroll", onScroll, { passive: true });
+    // remove event on unmount to prevent a memory leak with the cleanup
+    return () => {
+      window.removeEventListener("scroll", onScroll, { passive: true });
+    };
   }, []);
 
   const headerData = [
@@ -24,7 +25,7 @@ const Header = () => {
     { idx: 3, name: "My List" },
   ];
   return (
-    <HeaderWrapper ref={layoutRef}>
+    <HeaderWrapper render={render}>
       <Icon
         src="/icon-logo.png"
         alt="logo"
