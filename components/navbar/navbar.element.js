@@ -40,11 +40,17 @@ export const NavbarItem = styled.div`
   &:hover {
     cursor: pointer;
     & > svg {
-      transform: scale(1.4);
+      transform: scale(1.4) translateY(20%);
       transition: all 0.2s ease-in-out;
     }
     & > span {
-      display: none;
+      opacity: 0;
     }
   }
+  &:not(:hover) {
+    & > svg {
+      transform: scale(1);
+      transition: all 0.2s ease-in-out;
+    }
+
 `;
