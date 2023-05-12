@@ -51,6 +51,8 @@ export const Panel = styled.div`
   justify-content: space-between;
   & > span {
     flex-basis: 33.3%;
+    display: flex;
+    justify-content: center;
   }
 `;
 export const TopRankText = styled.div`
@@ -66,5 +68,5 @@ export const Wrapper = styled.div`
   flex-direction: column;
   gap: 11px;
   padding: 10px 43px 43px 43px;
-  width: max(46.18vh, 24.438rem);
+  width: max(46.2vh, 24.44rem);
 `;
