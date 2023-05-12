@@ -5,14 +5,14 @@ export const Wrapper = styled.div`
   ${flexCenter}
 
   position: relative;
-  width: 391px;
-  height: 415px;
+  width: max(46.18vh, 24.438rem);
+  height: max(49.01vh, 25.9375rem);
 
-  .poster {
+  /* .poster {
     object-fit: cover;
     width: 391px;
     height: 415px;
-  }
+  } */
 
   .overlay {
     position: absolute;
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
       rgba(0, 0, 0, 1)
     );
     z-index: 10;
-    width: 391px;
-    height: 415px;
+    width: max(46.18vh, 24.438rem);
+    height: max(49.01vh, 25.9375rem);
   }
 `;

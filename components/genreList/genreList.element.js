@@ -31,11 +31,12 @@ export const GenreListContent = styled.div`
 `;
 
 export const GenreListContentItem = styled.div`
-  background-color: pink;
+  background-color: #8080809b;
   min-width: 100px;
   height: ${(props) => (props.type === 1 ? "100px" : "175px")};
   border-radius: ${(props) => (props.type === 1 ? "50%" : "2px")};
   overflow: hidden;
+  position: relative;
   &:hover {
     transform: scale(0.98);
     transition: all 0.2s ease-in-out;
