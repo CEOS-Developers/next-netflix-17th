@@ -40,61 +40,26 @@ export default function Home() {
     console.log(inView);
   }, [inView]);
 
-  const getMovieData = () => {
-    getUpcoming()
-      .then((res) => {
-        res.data.results.map((item) => {
-          setPreviewList((prev) => [
-            ...prev,
-            {
-              id: item.id,
-              poster_path: item.poster_path,
-              // title: item.title,
-              // backdrop_path: item.backdrop_path,
-            },
-          ]);
-        });
-      })
-      .catch((err) => console.log(err));
-    getNowPlaying().then((res) => {
-      res.data.results.map((item) => {
-        setNowPlayingList((prev) => [
-          ...prev,
-          {
-            id: item.id,
-            poster_path: item.poster_path,
-            // title: item.title,
-            // backdrop_path: item.backdrop_path,
-          },
-        ]);
-      });
-    });
-    getTopRated().then((res) => {
-      res.data.results.map((item) => {
-        setTopRatedList((prev) => [
-          ...prev,
-          {
-            id: item.id,
-            poster_path: item.poster_path,
-            // title: item.title,
-            // backdrop_path: item.backdrop_path,
-          },
-        ]);
-      });
-    });
-    getPopular().then((res) => {
-      res.data.results.map((item) => {
-        setPopularList((prev) => [
-          ...prev,
-          {
-            id: item.id,
-            poster_path: item.poster_path,
-            // title: item.title,
-            // backdrop_path: item.backdrop_path,
-          },
-        ]);
-      });
-    });
+  const fetchMovieData = async (fetchFunction, updateFunction) => {
+    try {
+      const res = await fetchFunction();
+      const movieData = res.data.results.map((item) => ({
+        id: item.id,
+        poster_path: item.poster_path,
+        // title: item.title,
+        // backdrop_path: item.backdrop_path,
+      }));
+      updateFunction((prev) => [...prev, ...movieData]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getMovieData = async () => {
+    await fetchMovieData(getUpcoming, setPreviewList);
+    await fetchMovieData(getNowPlaying, setNowPlayingList);
+    await fetchMovieData(getTopRated, setTopRatedList);
+    await fetchMovieData(getPopular, setPopularList);
   };
 
   return (
