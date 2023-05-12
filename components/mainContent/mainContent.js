@@ -16,14 +16,20 @@ const MainContent = () => {
     }
     const timeout = setTimeout(() => {
       setRandNum(((randNum + 1) % 3) + 1);
-      handleOpacity();
     }, 10000);
-    return () => clearTimeout(timeout);
+    const timeopacity = setTimeout(() => {
+      handleOpacity();
+    }, 9500);
+
+    return () => {
+      clearTimeout(timeout);
+      clearTimeout(timeopacity);
+    };
   }, [randNum]);
 
   const handleOpacity = () => {
-    setImgOpacity(100);
-    setTimeout(() => setImgOpacity(0), 9500);
+    setImgOpacity(0);
+    setTimeout(() => setImgOpacity(100), 500);
   };
 
   return (
