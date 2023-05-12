@@ -11,11 +11,14 @@ const MainContent = () => {
   };
 
   useEffect(() => {
-    if (randNum === 0) getRandomNumber();
-    setTimeout(() => {
+    if (randNum === 0) {
+      getRandomNumber();
+    }
+    const timeout = setTimeout(() => {
       setRandNum(((randNum + 1) % 3) + 1);
       handleOpacity();
     }, 10000);
+    return () => clearTimeout(timeout);
   }, [randNum]);
 
   const handleOpacity = () => {
