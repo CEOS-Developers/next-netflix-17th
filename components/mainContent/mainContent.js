@@ -42,7 +42,7 @@ const MainContent = () => {
           }}
         />
       )}
-      <div className="overlay"></div>
+      <div className="overlay" />
     </Wrapper>
   );
 };
