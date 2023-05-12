@@ -17,7 +17,7 @@ export const HeaderWrapper = styled.header`
 `;
 export const Icon = styled.img`
   width: 2.1rem;
-  dislay: inline-block;
+  display: inline-block;
   cursor: pointer;
   transition: transform 0.5s ease-in-out;
   &:hover {

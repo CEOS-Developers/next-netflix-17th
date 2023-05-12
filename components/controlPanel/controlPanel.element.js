@@ -42,6 +42,11 @@ export const IconWithText = styled.div`
   gap: 0.2rem;
   color: white;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+  }
 `;
 
 export const Panel = styled.div`

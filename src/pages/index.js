@@ -28,6 +28,29 @@ export default function Home() {
   const [nowPlayingList, setNowPlayingList] = useState([]);
   const [topRatedList, setTopRatedList] = useState([]);
   const [popularList, setPopularList] = useState([]);
+  const renderGenre = [
+    {
+      id: 1,
+      type: 1,
+      name: "Previews",
+      data: previewList,
+    },
+    {
+      id: 2,
+      name: "Now Playing",
+      data: nowPlayingList,
+    },
+    {
+      id: 3,
+      name: "Top Rated",
+      data: topRatedList,
+    },
+    {
+      id: 4,
+      name: "Popular",
+      data: popularList,
+    },
+  ];
 
   useEffect(() => {
     getMovieData();
@@ -35,10 +58,6 @@ export default function Home() {
       setOpened(true);
     }, 4000);
   }, []);
-
-  useEffect(() => {
-    console.log(inView);
-  }, [inView]);
 
   const fetchMovieData = async (fetchFunction, updateFunction) => {
     try {
@@ -85,26 +104,14 @@ export default function Home() {
         <Header render={inView ? 1 : 0} />
         <MainContent />
         <ControlPanel />
-        <GenreList
-          type={1}
-          name="Previews"
-          data={previewList}
-        />
-        <GenreList
-          type={2}
-          name="Now Playing"
-          data={nowPlayingList}
-        />
-        <GenreList
-          type={2}
-          name="Top Rated"
-          data={topRatedList}
-        />
-        <GenreList
-          type={2}
-          name="Popular"
-          data={popularList}
-        />
+        {renderGenre.map((item) => (
+          <GenreList
+            key={item.id}
+            type={item.type ?? 2}
+            name={item.name}
+            data={item.data}
+          />
+        ))}
       </main>
     </>
   );
