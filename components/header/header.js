@@ -1,13 +1,13 @@
 import { HeaderWrapper, Icon, Tab } from "./header.element";
 
-const Header = () => {
+const Header = ({ render }) => {
   const headerData = [
     { idx: 1, name: "TV Shows" },
     { idx: 2, name: "Movies" },
     { idx: 3, name: "My List" },
   ];
   return (
-    <HeaderWrapper>
+    <HeaderWrapper render={render}>
       <Icon
         src="/icon-logo.png"
         alt="logo"
