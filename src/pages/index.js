@@ -102,7 +102,7 @@ export default function Home() {
         {!opened ? <LottieFile /> : <></>}
         <div ref={ref} />
         <Header render={inView ? 1 : 0} />
-        <MainContent />
+        <MainContent type={"main"} />
         <ControlPanel />
         {renderGenre.map((item) => (
           <GenreList

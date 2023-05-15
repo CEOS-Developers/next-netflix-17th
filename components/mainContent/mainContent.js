@@ -2,7 +2,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import { Wrapper } from "./mainContent.element";
-const MainContent = () => {
+
+// type: main = mainPage, detail = detailPage
+const MainContent = ({ type }) => {
   const [randNum, setRandNum] = useState(0);
   const [imgOpacity, setImgOpacity] = useState(100);
 
@@ -11,20 +13,22 @@ const MainContent = () => {
   };
 
   useEffect(() => {
-    if (randNum === 0) {
-      getRandomNumber();
-    }
-    const timeout = setTimeout(() => {
-      setRandNum(((randNum + 1) % 3) + 1);
-    }, 10000);
-    const timeopacity = setTimeout(() => {
-      handleOpacity();
-    }, 9500);
+    if (type === "main") {
+      if (randNum === 0) {
+        getRandomNumber();
+      }
+      const timeout = setTimeout(() => {
+        setRandNum(((randNum + 1) % 3) + 1);
+      }, 10000);
+      const timeopacity = setTimeout(() => {
+        handleOpacity();
+      }, 9500);
 
-    return () => {
-      clearTimeout(timeout);
-      clearTimeout(timeopacity);
-    };
+      return () => {
+        clearTimeout(timeout);
+        clearTimeout(timeopacity);
+      };
+    }
   }, [randNum]);
 
   const handleOpacity = () => {
@@ -34,23 +38,21 @@ const MainContent = () => {
 
   return (
     <Wrapper>
-      {randNum !== 0 && (
-        // <img
-        //   className="poster"
-        //   src={`/image-poster-${randNum}.jpeg`}
-        // />
-        <Image
-          src={`/image-poster-${randNum}.jpeg`}
-          alt="banner_img"
-          fill
-          priority
-          style={{
-            objectFit: "cover",
-            opacity: imgOpacity / 100,
-            transition: "all 0.5s ease-in-out",
-          }}
-        />
-      )}
+      <Image
+        src={
+          type === "main"
+            ? `/image-poster-${randNum}.jpeg`
+            : `/image-poster-1.jpeg`
+        }
+        alt="banner_img"
+        fill
+        priority
+        style={{
+          objectFit: "cover",
+          opacity: type === "main" ? imgOpacity / 100 : 1,
+          transition: "all 0.5s ease-in-out",
+        }}
+      />
       <div className="overlay" />
     </Wrapper>
   );
