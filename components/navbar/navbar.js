@@ -5,15 +5,21 @@ import { HiDownload } from "react-icons/hi";
 import { FiMenu } from "react-icons/fi";
 import Cs from "../../public/cs";
 import { useRouter } from "next/router";
-import { useRecoilValue } from "recoil";
-import { openState } from "../../states/states";
 
+// '/' or '/detail/[id]' : Home
+// '/search' : Search
+// '/scheduled' : Coming Soon
+// '/download' : Downloads
+// '/more' : More
 const Navbar = () => {
-  const render = useRecoilValue(openState);
   const router = useRouter();
   return (
-    <NavbarContainer render={render ? 1 : 0}>
-      <NavbarItem active={router.pathname === "/" ? 1 : 0}>
+    <NavbarContainer>
+      <NavbarItem
+        active={
+          router.pathname === "/" || router.pathname.includes("/detail") ? 1 : 0
+        }
+      >
         <BiHomeAlt2 size={24} />
         <span>Home</span>
       </NavbarItem>
