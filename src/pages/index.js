@@ -52,13 +52,20 @@ export default function Home() {
     },
   ];
 
+  // 처음 페이지가 로드될 때, 4개의 장르에 대한 데이터를 불러옴.
+  // openState는 recoil으로 관리함으로서 페이지를 새로고침하지 않는 이상
+  // 다시 '/'의 url로 접속하여도 lottieFile이 렌더링 되지 않도록 함.
   useEffect(() => {
     getMovieData();
-    setTimeout(() => {
+    const openTimeout = setTimeout(() => {
       setOpened(true);
     }, 4000);
+    return () => clearTimeout(openTimeout);
   }, []);
 
+  // fetchFunction : axios get하는 함수
+  // updateFunction: index.js에서 사용할 state를 업데이트하는 함수
+  // fetchFunction으로부터 data를 받아와서 필요한 data만 골라서 state에 저장함.
   const fetchMovieData = async (fetchFunction, updateFunction) => {
     try {
       const res = await fetchFunction();
@@ -100,6 +107,7 @@ export default function Home() {
       </Head>
       <main className={`${inter.className}`}>
         {!opened ? <LottieFile /> : <></>}
+        {/* Header의 render를 결정하기 위해 렌더링여부 감지되는 div */}
         <div ref={ref} />
         <Header render={inView ? 1 : 0} />
         <MainContent type={"main"} />
