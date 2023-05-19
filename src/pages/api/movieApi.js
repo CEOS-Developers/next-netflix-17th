@@ -9,7 +9,11 @@ export const getNowPlaying = async () => {
 };
 
 export const getNowPlayingWithPage = async (page = { pageParam: 1 }) => {
-  const { data } = await movieAxios.get(`now_playing?page=${page.pageParam}`);
+  const { data } = await fetch(
+    `http://127.0.0.1:3000/api/movie/now_playing/:${page}`
+  );
+  console.log("page data", data);
+  //const { data } = await movieAxios.get(`now_playing?page=${page.pageParam}`);
   return data;
 };
 

@@ -18,6 +18,10 @@ const nextConfig = {
         destination: `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_MOVIE_API}&query=:query`,
       },
       {
+        source: "/api/movie/now_playing/:page",
+        destination: `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.NEXT_PUBLIC_MOVIE_API}&page=:page`,
+      },
+      {
         source: "/api/movie/:path",
         destination: `https://api.themoviedb.org/3/movie/:path?api_key=${process.env.NEXT_PUBLIC_MOVIE_API}`,
       },
