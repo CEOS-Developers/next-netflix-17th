@@ -14,6 +14,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: "/api/movie/search/:query",
+        destination: `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_MOVIE_API}&query=:query`,
+      },
+      {
         source: "/api/movie/:path",
         destination: `https://api.themoviedb.org/3/movie/:path?api_key=${process.env.NEXT_PUBLIC_MOVIE_API}`,
       },
