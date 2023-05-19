@@ -34,7 +34,7 @@ const MovieCard = ({ id, title, poster }) => {
             height="76"
           />
           <MovieName className="text-ellipsis">{title}</MovieName>
-          <Link href={`/search/${id}`}>
+          <Link href={`/detail/${id}`}>
             <FaRegPlayCircle
               size={20}
               onClick={() => setScrollY(window.scrollY)}
