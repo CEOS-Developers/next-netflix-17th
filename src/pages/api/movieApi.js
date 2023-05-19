@@ -12,7 +12,8 @@ export const getNowPlaying = async () => {
 // getServerSideProps) 외부 api 주소로 요청
 export const getPrefetchNowPlaying = async ({ pageParam = 1 }) => {
   const { data } = await axios.get(
-    `http://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.NEXT_PUBLIC_MOVIE_API}&page=${pageParam}`
+    // `http://api.themoviedb.org/3/movie/now_playing?page=${pageParam}&api_key=${process.env.NEXT_PUBLIC_MOVIE_API}`
+    `/api/movie/now_playing/${pageParam}`
   );
   return data;
 };
@@ -26,9 +27,7 @@ export const getPrefetchSearchMovie = async (query = "test") => {
 };
 
 export const getNowPlayingWithPage = async (page = { pageParam: 1 }) => {
-  const { data } = await fetch(
-    `http://127.0.0.1:3000/api/movie/now_playing/:${page}`
-  );
+  const { data } = await fetch(`api/movie/now_playing/:${page}`);
   //const { data } = await movieAxios.get(`now_playing?page=${page.pageParam}`);
   return data;
 };

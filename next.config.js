@@ -19,7 +19,7 @@ const nextConfig = {
       },
       {
         source: "/api/movie/now_playing/:page",
-        destination: `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.NEXT_PUBLIC_MOVIE_API}&page=:page`,
+        destination: `https://api.themoviedb.org/3/movie/now_playing?page=:page&api_key=${process.env.NEXT_PUBLIC_MOVIE_API}`,
       },
       {
         source: "/api/movie/:path",
