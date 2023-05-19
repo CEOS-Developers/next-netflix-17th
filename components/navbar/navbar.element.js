@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Link from "next/link";
 
 export const NavbarContainer = styled.nav`
   position: fixed;
@@ -14,14 +15,13 @@ export const NavbarContainer = styled.nav`
   justify-content: space-around;
   align-items: center;
   color: white;
-  ${(props) => (props.render ? "" : "display: none;")}
-  & > div {
+  & > a {
     flex-basis: 18%;
     margin: 0 1%;
   }
 `;
 
-export const NavbarItem = styled.div`
+export const NavbarItem = styled(Link)`
   display: flex;
   flex-direction: column;
   justify-content: center;

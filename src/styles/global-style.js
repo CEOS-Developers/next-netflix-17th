@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
         display: none;
     }
     html{
-        font-size: 11px;
+        font-size: 12px;
         -webkit-text-size-adjust: none;
         font-family: -apple-system,BlinkMacSystemFont,helvetica,Apple SD Gothic Neo,sans-serif;       
         font-display: fallback;
@@ -30,6 +30,10 @@ export const GlobalStyle = createGlobalStyle`
             cursor: default;
             fill: #f2f3f4;
         }
+    }
+
+    input {
+        appearance: none;
     }
 
     .pc-tablet-only {

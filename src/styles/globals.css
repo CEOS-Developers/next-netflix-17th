@@ -22,18 +22,26 @@
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 body {
   display: flex;
   justify-content: center;
   background-color: black;
+  color: white;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
 }
 
 div.mainContainer {
@@ -44,4 +52,12 @@ div.mainContainer {
   flex-direction: column;
   overflow: auto;
   padding-bottom: 60px;
+}
+
+.text-ellipsis {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  flex-grow: 1;
+  text-overflow: ellipsis;
 }

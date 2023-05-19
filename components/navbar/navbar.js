@@ -3,33 +3,53 @@ import { NavbarContainer, NavbarItem } from "./navbar.element";
 import { BiHomeAlt2, BiSearch, BiMenu } from "react-icons/bi";
 import { HiDownload } from "react-icons/hi";
 import { FiMenu } from "react-icons/fi";
+import Link from "next/link";
 import Cs from "../../public/cs";
 import { useRouter } from "next/router";
-import { useRecoilValue } from "recoil";
-import { openState } from "../../states/states";
 
+// '/' or '/detail/[id]' : Home
+// '/search' : Search
+// '/scheduled' : Coming Soon
+// '/download' : Downloads
+// '/more' : More
 const Navbar = () => {
-  const render = useRecoilValue(openState);
   const router = useRouter();
   return (
-    <NavbarContainer render={render ? 1 : 0}>
-      <NavbarItem active={router.pathname === "/" ? 1 : 0}>
+    <NavbarContainer>
+      <NavbarItem
+        href="/"
+        active={
+          router.pathname === "/" || router.pathname.includes("/detail") ? 1 : 0
+        }
+      >
         <BiHomeAlt2 size={24} />
         <span>Home</span>
       </NavbarItem>
-      <NavbarItem active={router.pathname === "/search" ? 1 : 0}>
+      <NavbarItem
+        href="/search"
+        active={router.pathname === "/search" ? 1 : 0}
+      >
         <BiSearch size={24} />
         <span>Search</span>
       </NavbarItem>
-      <NavbarItem active={router.pathname === "/scheduled" ? 1 : 0}>
+      <NavbarItem
+        active={router.pathname === "/scheduled" ? 1 : 0}
+        href="/search"
+      >
         <Cs color={"gray"} />
         <span>Coming Soon</span>
       </NavbarItem>
-      <NavbarItem active={router.pathname === "/download" ? 1 : 0}>
+      <NavbarItem
+        active={router.pathname === "/download" ? 1 : 0}
+        href="/detail/1"
+      >
         <HiDownload size={24} />
         <span>Downloads</span>
       </NavbarItem>
-      <NavbarItem active={router.pathname === "/more" ? 1 : 0}>
+      <NavbarItem
+        active={router.pathname === "/more" ? 1 : 0}
+        href="/search"
+      >
         <FiMenu size={24} />
         <span>More</span>
       </NavbarItem>
