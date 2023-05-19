@@ -16,30 +16,42 @@ const Navbar = () => {
   const router = useRouter();
   return (
     <NavbarContainer>
-      <NavbarItem
-        active={
-          router.pathname === "/" || router.pathname.includes("/detail") ? 1 : 0
-        }
-      >
-        <BiHomeAlt2 size={24} />
-        <span>Home</span>
-      </NavbarItem>
-      <NavbarItem active={router.pathname === "/search" ? 1 : 0}>
-        <BiSearch size={24} />
-        <span>Search</span>
-      </NavbarItem>
-      <NavbarItem active={router.pathname === "/scheduled" ? 1 : 0}>
-        <Cs color={"gray"} />
-        <span>Coming Soon</span>
-      </NavbarItem>
-      <NavbarItem active={router.pathname === "/download" ? 1 : 0}>
-        <HiDownload size={24} />
-        <span>Downloads</span>
-      </NavbarItem>
-      <NavbarItem active={router.pathname === "/more" ? 1 : 0}>
-        <FiMenu size={24} />
-        <span>More</span>
-      </NavbarItem>
+      <Link href="/">
+        <NavbarItem
+          active={
+            router.pathname === "/" || router.pathname.includes("/detail")
+              ? 1
+              : 0
+          }
+        >
+          <BiHomeAlt2 size={24} />
+          <span>Home</span>
+        </NavbarItem>
+      </Link>
+      <Link href="/search">
+        <NavbarItem active={router.pathname === "/search" ? 1 : 0}>
+          <BiSearch size={24} />
+          <span>Search</span>
+        </NavbarItem>
+      </Link>
+      <Link href="/scheduled">
+        <NavbarItem active={router.pathname === "/scheduled" ? 1 : 0}>
+          <Cs color={"gray"} />
+          <span>Coming Soon</span>
+        </NavbarItem>
+      </Link>
+      <Link href="/download">
+        <NavbarItem active={router.pathname === "/download" ? 1 : 0}>
+          <HiDownload size={24} />
+          <span>Downloads</span>
+        </NavbarItem>
+      </Link>
+      <Link href="/more">
+        <NavbarItem active={router.pathname === "/more" ? 1 : 0}>
+          <FiMenu size={24} />
+          <span>More</span>
+        </NavbarItem>
+      </Link>
     </NavbarContainer>
   );
 };

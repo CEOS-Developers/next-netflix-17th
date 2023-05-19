@@ -14,7 +14,7 @@ export const NavbarContainer = styled.nav`
   justify-content: space-around;
   align-items: center;
   color: white;
-  & > div {
+  & > a {
     flex-basis: 18%;
     margin: 0 1%;
   }
