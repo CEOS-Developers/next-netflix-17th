@@ -1,16 +1,16 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { imgSrc as imgBase } from "../../src/assets/constants";
 
 import { Wrapper } from "./mainContent.element";
 
 // type: main = mainPage, detail = detailPage
-const MainContent = ({ imgSrc, type }) => {
+const MainContent = ({ imgSrc, type, imgList }) => {
   const [randNum, setRandNum] = useState(0);
   const [imgOpacity, setImgOpacity] = useState(100);
-  let imgBase = "https://image.tmdb.org/t/p/w500";
 
   const getRandomNumber = () => {
-    setRandNum(Math.floor(Math.random() * 3) + 1);
+    setRandNum(Math.floor(Math.random() * 20));
   };
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const MainContent = ({ imgSrc, type }) => {
         getRandomNumber();
       }
       const timeout = setTimeout(() => {
-        setRandNum(((randNum + 1) % 3) + 1);
+        setRandNum((randNum + 1) % 20);
       }, 10000);
       const timeopacity = setTimeout(() => {
         handleOpacity();
@@ -40,11 +40,7 @@ const MainContent = ({ imgSrc, type }) => {
   return (
     <Wrapper>
       <Image
-        src={
-          type === "main"
-            ? `/image-poster-${randNum === 0 ? 1 : randNum}.jpeg`
-            : imgBase + imgSrc
-        }
+        src={type === "main" ? imgBase + imgList[randNum] : imgBase + imgSrc}
         alt="banner_img"
         fill
         priority
