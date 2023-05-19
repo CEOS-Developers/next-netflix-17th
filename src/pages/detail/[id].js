@@ -26,6 +26,7 @@ const DetailPage = ({ returnData }) => {
   );
 };
 
+// TODO: getStaticProps와 getStaticPath로 변경하기!!
 // getServerSideProps를 통해 서버의 api를 미리 호출할 때에는
 // 내부 url을 rewrites할 수 없음. 즉, 정확한 api주소를 입력해야함.
 // 어짜피 서버단에서 요청을 보내는 것이기 때문에 Network탭에서 해당 내용을 확인할 수 없음
