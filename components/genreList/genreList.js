@@ -17,6 +17,7 @@ const GenreList = ({ type, name, data }) => {
         <GenreListContent>
           {data.map((item) => (
             <GenreListContentItem
+              href={`/detail/${item.id}`}
               key={item.id}
               type={type}
             >

@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { Wrapper } from "./mainContent.element";
 
 // type: main = mainPage, detail = detailPage
-const MainContent = ({ type }) => {
+const MainContent = ({ imgSrc, type }) => {
   const [randNum, setRandNum] = useState(0);
   const [imgOpacity, setImgOpacity] = useState(100);
+  let imgBase = "https://image.tmdb.org/t/p/w500";
 
   const getRandomNumber = () => {
     setRandNum(Math.floor(Math.random() * 3) + 1);
@@ -29,7 +30,7 @@ const MainContent = ({ type }) => {
         clearTimeout(timeopacity);
       };
     }
-  }, [randNum]);
+  }, [type, randNum]);
 
   const handleOpacity = () => {
     setImgOpacity(0);
@@ -41,8 +42,8 @@ const MainContent = ({ type }) => {
       <Image
         src={
           type === "main"
-            ? `/image-poster-${randNum}.jpeg`
-            : `/image-poster-1.jpeg`
+            ? `/image-poster-${randNum === 0 ? 1 : randNum}.jpeg`
+            : imgBase + imgSrc
         }
         alt="banner_img"
         fill

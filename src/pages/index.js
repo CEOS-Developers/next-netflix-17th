@@ -21,7 +21,7 @@ import {
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Home({}) {
   const [ref, inView] = useInView();
   const [opened, setOpened] = useRecoilState(openState);
   const [previewList, setPreviewList] = useState([]);
@@ -60,6 +60,7 @@ export default function Home() {
     const openTimeout = setTimeout(() => {
       setOpened(true);
     }, 4000);
+
     return () => clearTimeout(openTimeout);
   }, []);
 
@@ -69,13 +70,16 @@ export default function Home() {
   const fetchMovieData = async (fetchFunction, updateFunction) => {
     try {
       const res = await fetchFunction();
-      const movieData = res.data.results.map((item) => ({
-        id: item.id,
-        poster_path: item.poster_path,
-        // title: item.title,
-        // backdrop_path: item.backdrop_path,
-      }));
-      updateFunction((prev) => [...prev, ...movieData]);
+      let resData = [];
+      res.data.results.map((item) => {
+        resData.push({
+          id: item.id,
+          poster_path: item.poster_path,
+          // title: item.title,
+          // backdrop_path: item.backdrop_path,
+        });
+      });
+      updateFunction(resData);
     } catch (error) {
       console.log(error);
     }
@@ -110,6 +114,7 @@ export default function Home() {
         {/* Header의 render를 결정하기 위해 렌더링여부 감지되는 div */}
         <div ref={ref} />
         <Header render={inView ? 1 : 0} />
+        {/* TODO: image 배열 넘겨줄것 */}
         <MainContent type={"main"} />
         <ControlPanel />
         {renderGenre.map((item) => (
@@ -124,3 +129,31 @@ export default function Home() {
     </>
   );
 }
+
+// TEST: getStaticProps vs getServerSideProps vs Incremental Static Regeneration (ISR)
+// getStaticProps: 빌드타임에 실행되어서 빌드된 페이지에 props를 전달함. -> 빠른 렌더링 / static한 데이터
+// getServerSideProps: 런타임에 실행되어서 요청이 들어올 때마다 props를 전달함. -> 느린 렌더링 / dynamic한 데이터
+// Incremental Static Regeneration (ISR): 런타임 실행되지만, 특정 시간동안은 같은 요청이 들어와도 fetch하지 않음 -> 보통 렌더링 / dynamic한 데이터
+
+// TODO: getStaticProps를 통해 데이터 받아온 후 고정
+// export async function getStaticProps() {
+
+//   return {
+//     props: {},
+//   };
+// }
+
+// TODO: getServerSideProps를 통해 데이터 받아온 후 고정
+// export async function getServerSideProps() {
+//   return {
+//     props: {},
+//   };
+// }
+
+// TODO: ISR : getStaticProps + revalidate prop
+// export async function getStaticProps() {
+//   return {
+//     props: {},
+//     revalidate: 3600, //단위 : 초
+//   };
+// }

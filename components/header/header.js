@@ -9,7 +9,7 @@ const Header = ({ render }) => {
   return (
     <HeaderWrapper render={render}>
       <Icon
-        src="/icon-logo.png"
+        src="/netflix.svg"
         alt="logo"
       />
       {headerData.map((data) => (
