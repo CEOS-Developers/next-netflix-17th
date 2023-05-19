@@ -81,8 +81,11 @@ export default function Home({
         {/* Header의 render를 결정하기 위해 렌더링여부 감지되는 div */}
         <div ref={ref} />
         <Header render={inView ? 1 : 0} />
-        {/* TODO: image 배열 넘겨줄것 */}
-        <MainContent type={"main"} />
+        {/* DONE: image 배열 넘겨줄것 */}
+        <MainContent
+          type={"main"}
+          imgList={renderGenre[0].data.map((item) => item.poster_path)}
+        />
         <ControlPanel />
         {renderGenre.map((item) => (
           <GenreList
@@ -105,7 +108,7 @@ export default function Home({
 // getStaticProps를 통해 데이터 받아온 후 고정 -> ISR과 같으므로 대체
 // getServerSideProps를 통해 데이터 받아온 후 고정 -> ISR이 더 나으므로 대체
 
-// TODO: ISR : getStaticProps + revalidate prop
+// DONE: ISR : getStaticProps + revalidate prop
 
 // 중복로직 피하기 위해 fetchData function으로 분리
 const fetchData = async (path) => {
@@ -255,7 +258,6 @@ export async function getStaticProps() {
 //         {/* Header의 render를 결정하기 위해 렌더링여부 감지되는 div */}
 //         <div ref={ref} />
 //         <Header render={inView ? 1 : 0} />
-//         {/* TODO: image 배열 넘겨줄것 */}
 //         <MainContent type={"main"} />
 //         <ControlPanel />
 //         {renderGenre.map((item) => (

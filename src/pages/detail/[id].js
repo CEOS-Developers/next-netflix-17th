@@ -23,7 +23,7 @@ const fetchData = async (path) => {
 // 서버에서 받아와서 렌더링하기 전까지 보여줄 데이터가 없게되긴함. -> getStaticProps로 해결
 const DetailPage = ({ returnData }) => {
   const router = useRouter();
-  // being loaded
+  // will be rendered while data being loaded
   if (router.isFallback) {
     return (
       <DetailPageContainer>
@@ -46,7 +46,7 @@ const DetailPage = ({ returnData }) => {
   );
 };
 
-// TODO: getStaticProps와 getStaticPath로 변경하기!!
+// getStaticPaths : dynamic하게 routing되는 페이지들의 path를 미리 정의해주는 함수
 export const getStaticPaths = async () => {
   let paths = [];
   const categories = ["popular", "top_rated", "now_playing", "upcoming"];
@@ -66,6 +66,8 @@ export const getStaticPaths = async () => {
   };
 };
 
+// getStaticPaths로부터 받은 path들을 fetch하여 props로 return
+// id별 렌더링 할 데이터는 고정되어 있기 때문에 ISR로 구현할 필요 없음
 export const getStaticProps = async ({ params }) => {
   const id = params.id;
   let returnData = {};
@@ -74,7 +76,6 @@ export const getStaticProps = async ({ params }) => {
       `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_MOVIE_API}`
     )
     .then((res) => {
-      console.log(res);
       returnData.id = id;
       returnData.title = res.data.title;
       returnData.overview = res.data.overview;
