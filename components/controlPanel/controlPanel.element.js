@@ -8,7 +8,7 @@ export const TopRankBox = styled.div`
   ${flexCenter}
   flex-direction: column;
 
-  border: 2px solid ${theme.white};
+  border: 2px solid ${theme.color.white};
   width: 20px;
   height: 20px;
   color: white;
@@ -22,14 +22,22 @@ export const TopRankBox = styled.div`
 
 export const PlayButton = styled.button`
   ${flexCenter}
-  background: ${theme.gray};
   border-radius: 5.6px;
-  width: 110px;
+  width: 100%;
   height: 45px;
   gap: 10px;
   cursor: pointer;
   border: 0;
 
+  &:hover {
+    background-color: #e5e5e5;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:not(:hover) {
+    background-color: ${theme.color.gray};
+    transition: all 0.3s ease-in-out;
+  }
   span {
     font-weight: 600;
     font-size: 20px;

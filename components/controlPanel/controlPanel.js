@@ -9,6 +9,14 @@ import {
   PlayButton,
 } from "./controlPanel.element";
 
+export const CustomPlayButton = () => {
+  return (
+    <PlayButton>
+      <BsFillPlayFill size={27} /> <span>Play</span>
+    </PlayButton>
+  );
+};
+
 const ControlPanel = () => {
   return (
     <Wrapper>
@@ -23,9 +31,7 @@ const ControlPanel = () => {
           </IconWithText>
         </span>
         <span>
-          <PlayButton>
-            <BsFillPlayFill size={27} /> <span>Play</span>
-          </PlayButton>
+          <CustomPlayButton />
         </span>
         <span>
           <IconWithText>
