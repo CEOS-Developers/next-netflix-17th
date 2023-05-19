@@ -4,3 +4,5 @@ export const queryKeys = {
 };
 
 export const maxPageNum = 1000;
+
+export const imgSrc = "https://image.tmdb.org/t/p/w500";

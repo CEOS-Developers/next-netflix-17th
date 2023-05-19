@@ -6,10 +6,9 @@ import { FaRegPlayCircle } from "react-icons/fa";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useObserver } from "../../hooks/useObserver";
 import useLocalStorage from "use-local-storage";
+import { imgSrc } from "../../src/assets/constants";
 
 const MovieCard = ({ id, title, poster }) => {
-  let imgSrc = "https://image.tmdb.org/t/p/w500";
-
   const [visible, setVisible] = useState(false);
   const [scrollY, setScrollY] = useLocalStorage("movie_list_scroll", 0);
   const target = useRef(null);
