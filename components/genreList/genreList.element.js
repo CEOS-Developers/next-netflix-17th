@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Link from "next/link";
 
 export const GenreListContainer = styled.div`
   background-color: black;
@@ -30,12 +31,12 @@ export const GenreListContent = styled.div`
   gap: 0.5rem;
 `;
 
-export const GenreListContentItem = styled.div`
+export const GenreListContentItem = styled(Link)`
   background-color: #8080809b;
   min-width: 100px;
   height: ${(props) => (props.type === 1 ? "100px" : "175px")};
   border-radius: ${(props) => (props.type === 1 ? "50%" : "2px")};
-  overflow: hidden;
+  overflow-y: hidden;
   position: relative;
   &:hover {
     transform: scale(0.98);

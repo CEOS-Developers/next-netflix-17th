@@ -16,6 +16,7 @@ const Navbar = () => {
   return (
     <NavbarContainer>
       <NavbarItem
+        href="/"
         active={
           router.pathname === "/" || router.pathname.includes("/detail") ? 1 : 0
         }
@@ -23,19 +24,31 @@ const Navbar = () => {
         <BiHomeAlt2 size={24} />
         <span>Home</span>
       </NavbarItem>
-      <NavbarItem active={router.pathname === "/search" ? 1 : 0}>
+      <NavbarItem
+        href="/search"
+        active={router.pathname === "/search" ? 1 : 0}
+      >
         <BiSearch size={24} />
         <span>Search</span>
       </NavbarItem>
-      <NavbarItem active={router.pathname === "/scheduled" ? 1 : 0}>
+      <NavbarItem
+        active={router.pathname === "/scheduled" ? 1 : 0}
+        href="/search"
+      >
         <Cs color={"gray"} />
         <span>Coming Soon</span>
       </NavbarItem>
-      <NavbarItem active={router.pathname === "/download" ? 1 : 0}>
+      <NavbarItem
+        active={router.pathname === "/download" ? 1 : 0}
+        href="/detail/1"
+      >
         <HiDownload size={24} />
         <span>Downloads</span>
       </NavbarItem>
-      <NavbarItem active={router.pathname === "/more" ? 1 : 0}>
+      <NavbarItem
+        active={router.pathname === "/more" ? 1 : 0}
+        href="/search"
+      >
         <FiMenu size={24} />
         <span>More</span>
       </NavbarItem>
