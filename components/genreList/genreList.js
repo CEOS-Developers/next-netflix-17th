@@ -5,11 +5,11 @@ import {
   GenreListContentItem,
   GenreListTitle,
 } from "./genreList.element";
+import { imgSrc } from "../../src/assets/constants";
 
 // type: 1 => Preview, 2 => 나머지
 // name: List 제목, data: List에 들어갈 데이터
 const GenreList = ({ type, name, data }) => {
-  let imgSrc = "https://image.tmdb.org/t/p/w500";
   return (
     data && (
       <GenreListContainer type={type}>

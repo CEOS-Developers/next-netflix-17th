@@ -32,6 +32,10 @@ export const GlobalStyle = createGlobalStyle`
         }
     }
 
+    input {
+        appearance: none;
+    }
+
     .pc-tablet-only {
         display: block;
         ${media.mobile} {
