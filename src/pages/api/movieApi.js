@@ -8,15 +8,13 @@ export const getNowPlaying = async () => {
   return movieAxios.get(`now_playing`);
 };
 
-export const getNowPlayingWithPage = async (page) => {
-  const { data } = await movieAxios.get(
-    `movie/now_playing?page=${page.pageParam}`
-  );
+export const getNowPlayingWithPage = async (page = { pageParam: 1 }) => {
+  const { data } = await movieAxios.get(`now_playing?page=${page.pageParam}`);
   return data;
 };
 
-export const searchMovie = async (query) => {
-  return movieAxios.get(`search/movie?query=${query}`);
+export const searchMovie = async (query = "test") => {
+  return movieAxios.get(`search/:${query}`);
 };
 
 export const getTopRated = async () => {
