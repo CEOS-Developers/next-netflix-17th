@@ -48,6 +48,8 @@ const MainContent = ({ imgSrc, type }) => {
         alt="banner_img"
         fill
         priority
+        placeholder="blur"
+        blurDataURL="https://via.placeholder.com/100"
         style={{
           objectFit: "cover",
           opacity: type === "main" ? imgOpacity / 100 : 1,

@@ -24,3 +24,18 @@ export const MovieDataContent = styled.div`
   font-weight: 400;
   width: calc(100%);
 `;
+
+export const MovieDataTitleFB = styled.div`
+  background: #dedede;
+  width: 40%;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+`;
+
+export const MovieDataContentFB = styled.div`
+  background: #dedede;
+  width: 100%;
+  height: 0.75rem;
+  border-radius: 0.25rem;
+  margin-bottom: -0.5rem;
+`;

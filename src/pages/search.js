@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { useRouter } from "next/router";
-import Head from "next/head";
 
 // components
 import Layout from "../../components/layout";
@@ -12,7 +11,7 @@ import Loading from "../../components/movieCard/skeleton";
 
 // api
 import { useGetMovieSearch, useGetMovieLists } from "./api/query";
-import { getNowPlayingWithPage } from "./api/movieApi";
+import { getPrefetchNowPlaying } from "./api/movieApi";
 
 // utils
 import { QueryClient } from "react-query";
@@ -20,25 +19,15 @@ import { dehydrate } from "react-query/hydration";
 import { queryKeys } from "../assets/constants";
 import { useObserver } from "../../hooks/useObserver";
 import useLocalStorage from "use-local-storage";
-import { serverAxios } from "./api";
 
-const Search = (props) => {
-  console.log("props", props);
-
-  // TODO: 데이터 넘어오는 것 확인
-  console.log("props", props.dehydratedState.queries);
+const Search = ({ movieList }) => {
   const bottomRef = useRef(null);
   const router = useRouter();
 
-  const [scrollY] = useLocalStorage("movie_list_scroll", 0);
+  // const [scrollY] = useLocalStorage("movie_list_scroll", 0);
   const { search } = router.query;
 
-  const {
-    status: searchStatus,
-    error: searchError,
-    data: searchData,
-  } = useGetMovieSearch(search);
-
+  // ssr로 받아온 데이터를 prefetch
   const {
     data: movieData,
     error: movieError,
@@ -46,6 +35,13 @@ const Search = (props) => {
     isFetchingNextPage,
     status: movieStatus,
   } = useGetMovieLists();
+
+  // 키워드 검색 api를 통해서 실시간 검색 구현
+  const {
+    status: searchStatus,
+    error: searchError,
+    data: searchData,
+  } = useGetMovieSearch(search);
 
   const onIntersect = ([entry]) => entry.isIntersecting && fetchNextPage();
 
@@ -63,9 +59,6 @@ const Search = (props) => {
       <Searchbar />
       <Spacing size={20} />
       <GenreListTitle type={1}>Top Searches</GenreListTitle>
-      {/* search가 undefined인 경우, 기본 api에 따라 렌더링 */}
-
-      {/* TODO: 데이터 잘 넘어오는지 확인하기 위해 주석처리해놨습니다
       {search === undefined ? (
         <>
           {movieStatus === "loading" && <Loading />}
@@ -75,7 +68,7 @@ const Search = (props) => {
               page.results.map((movie) => (
                 <MovieCard
                   key={movie.id}
-                  id={movie.id} // 상세 페이지 전환용 id
+                  id={movie.id}
                   title={movie.title}
                   poster={movie.poster_path}
                 />
@@ -100,9 +93,6 @@ const Search = (props) => {
         </>
       )}
 
-              */}
-
-      {/* 바닥 ref를 위한 div를 만들어준다. */}
       <div ref={bottomRef} />
       {isFetchingNextPage && <Loading />}
     </Layout>
@@ -114,22 +104,15 @@ export default Search;
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
-  const getPrefetchNowPlaying = async () => {
-    const { data } = await fetch(
-      `http://127.0.0.1:3000/api/movie/now_playing/1`
-    );
-    return data;
-  };
-
   await queryClient.prefetchInfiniteQuery(
     queryKeys.movieList,
-    () => getPrefetchNowPlaying(),
+    getPrefetchNowPlaying,
     { staleTime: 1000 }
   );
 
   return {
     props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+      movieList: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
   };
 }
