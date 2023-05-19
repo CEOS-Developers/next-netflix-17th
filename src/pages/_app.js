@@ -10,8 +10,6 @@ import Layout from "../../components/layout";
 export default function App({ Component, pageProps }) {
   const [queryClient] = useState(() => new QueryClient());
 
-  console.log("pageProps", pageProps);
-
   // https://tanstack.com/query/v4/docs/react/guides/ssr
   return (
     <QueryClientProvider client={queryClient}>
