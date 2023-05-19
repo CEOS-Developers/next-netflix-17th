@@ -31,6 +31,10 @@ const MovieCard = ({ id, title, poster }) => {
             style={{ objectFit: "cover" }}
             width="146"
             height="76"
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "https://via.placeholder.com/100";
+            }}
           />
           <MovieName className="text-ellipsis">{title}</MovieName>
           <Link href={`/detail/${id}`}>
