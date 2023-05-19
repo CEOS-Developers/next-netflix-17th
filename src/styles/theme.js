@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const theme = {
   color: {
-    white: "ffffff",
+    white: "#ffffff",
     gray: "#c4c4c4",
   },
 };
