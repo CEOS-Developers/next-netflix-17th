@@ -3,6 +3,7 @@ import { NavbarContainer, NavbarItem } from "./navbar.element";
 import { BiHomeAlt2, BiSearch, BiMenu } from "react-icons/bi";
 import { HiDownload } from "react-icons/hi";
 import { FiMenu } from "react-icons/fi";
+import Link from "next/link";
 import Cs from "../../public/cs";
 import { useRouter } from "next/router";
 
