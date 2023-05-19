@@ -20,7 +20,7 @@ import { dehydrate } from "react-query/hydration";
 import { queryKeys } from "../assets/constants";
 import { useObserver } from "../../hooks/useObserver";
 import useLocalStorage from "use-local-storage";
-import { serverAxios } from "./api";
+import axios from "axios";
 
 const Search = (props) => {
   console.log("props", props);
@@ -115,15 +115,22 @@ export async function getServerSideProps() {
   const queryClient = new QueryClient();
 
   const getPrefetchNowPlaying = async () => {
-    const { data } = await fetch(
-      `http://127.0.0.1:3000/api/movie/now_playing/1`
-    );
+    let data = [];
+    await axios
+      .get(
+        `http://api.themoviedb.org/3/movie/now_playing?page=1&api_key=${process.env.NEXT_PUBLIC_MOVIE_API}`
+      )
+      .then((res) => {
+        console.log("------------------*******-----");
+        console.log(res.data);
+        data = res.data;
+      });
     return data;
   };
 
   await queryClient.prefetchInfiniteQuery(
     queryKeys.movieList,
-    () => getPrefetchNowPlaying(),
+    getPrefetchNowPlaying,
     { staleTime: 1000 }
   );
 
